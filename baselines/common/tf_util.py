@@ -152,7 +152,7 @@ class Uint8Input(PlacholderTfInput):
 
         super().__init__(tf.placeholder(tf.uint8, [None] + list(shape), name=name))
         self._shape = shape
-        self._output = tf.cast(super().get(), tf.float16) / 255.0
+        self._output = tf.cast(super().get(), tf.float32) / 255.0
 
     def get(self):
         return self._output
