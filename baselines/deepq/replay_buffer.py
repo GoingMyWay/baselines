@@ -89,9 +89,8 @@ class PrioritizedReplayBuffer(ReplayBuffer):
         assert alpha >= 0
         self._alpha = alpha
 
-        it_capacity = 1
-        while it_capacity < size:
-            it_capacity *= 2
+        # https://www.geeksforgeeks.org/segment-tree-set-1-sum-of-given-range/
+        self.it_capacity = int(2*2**(np.ceil(np.log2(size)))-1)
 
         self._it_sum = SumSegmentTree(it_capacity)
         self._it_min = MinSegmentTree(it_capacity)
